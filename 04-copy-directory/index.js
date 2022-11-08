@@ -11,6 +11,19 @@ fs.mkdir(newDirectoryPath, { recursive: true }, (err) => {
   }
 })
 
+fs.readdir(newDirectoryPath, (err, files) => {
+  if(err) {
+    throw err
+  }
+  files.forEach(el=>{
+    fs.unlink(`${newDirectoryPath}/${el}`, err => {
+      if(err) throw err; 
+   });
+  })
+});
+
+
+
 fs.readdir(directoryPath, (err, files) => {
   if (err) {
     console.log(err)
